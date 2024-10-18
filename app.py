@@ -12,7 +12,9 @@ def test():
 
 # dynamic route
 
-@app.route('/test/<username>')
+# @app.route('/test2', defaults={'username': None})
+# @app.route('/test2/', defaults={'username': None})     got error for guest if doing without this . tell the reason.
+@app.route('/test2/<username>')
 def test2(username:str = None)->str:    # type hinting
     if username is None:
         return 'Hello, Guest!'
