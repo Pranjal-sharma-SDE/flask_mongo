@@ -4,9 +4,9 @@ from dotenv import load_dotenv
 import os
 
 
-load_dotenv()
+load_dotenv()  # load environment variables
 
-uri = os.getenv('MONGO_URI')
+uri = os.getenv('MONGO_URI') 
 
 app = Flask(__name__)
 
@@ -46,7 +46,7 @@ def test2(username:str = None)->str:    # type hinting
     return 'Hello, ' + username
 
 
-@app.route('/add_user', methods=['POST'])
+@app.route('/add_user', methods=['POST'])   # Get, post,put , delete, patch 
 def add_user():
     data = request.get_json()
 
@@ -55,7 +55,7 @@ def add_user():
     email = data['email']
 
     if username is None or password is None or email is None:
-        return jsonify({'error': 'Username or password or email is missing'}), 400
+        return jsonify({'error': 'Username or password or email is missing'}), 400   # to write the code or rest api - 400 , 404 - , 500 , 
 
     users_collection.insert_one({'username': username, 'password': password, 'email': email})
 
@@ -66,6 +66,7 @@ def add_user():
 def get_users():
     users_list = list(users_collection.find({}, {'_id': 0}))  # Exclude the '_id' field
     return jsonify(users_list), 200
+    
 
 
 # @app.route('/get_users', methods=['GET'])
