@@ -10,6 +10,14 @@ def hello_world():
 def test():
     return 'test'
 
+# dynamic route
+
+@app.route('/test/<username>')
+def test2(username:str = None)->str:    # type hinting
+    if username is None:
+        return 'Hello, Guest!'
+    return 'Hello, ' + username
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
 
